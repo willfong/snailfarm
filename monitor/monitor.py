@@ -54,6 +54,6 @@ camera = PiCamera()
 camera.rotation = 180
 camera.start_preview()
 time.sleep(5)
-camera.capture('tank-{}.jpg'.format(fs))
+camera.capture('tank-latest.jpg')
 camera.stop_preview()
 
