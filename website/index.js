@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 function drawCharts(e) {
   var number = e.target.value;
-  $.getJSON('https://serioustime.io/list/58a418ca57a571218d709977/read/'+number, function(data) {
+  $.getJSON('https://serioustime.io/api/SQtbKABnsD9r2Lu6F/'+number, function(data) {
     var dataarray = [];
     for(var i = 0;i < data.length;i++){
       if (data[i]) {
@@ -32,8 +32,8 @@ function drawCharts(e) {
     });
   });
 
-  $.getJSON('https://serioustime.io/list/58a418ca57a571218d709978/read/'+number, function(water) {
-    $.getJSON('https://serioustime.io/list/58a418ca57a571218d709979/read/'+number, function(air) {
+  $.getJSON('https://serioustime.io/api/67zYukQYFngjb3QTk/'+number, function(water) {
+    $.getJSON('https://serioustime.io/api/CwmLesuG3XdHAQMep/'+number, function(air) {
     var airarray = [];
     var waterarray = [];
     for(var i = 0;i < water.length;i++){
