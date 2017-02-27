@@ -1,4 +1,5 @@
 import time
+import requests
 
 from picamera import PiCamera
 from envirophat import light
@@ -41,9 +42,13 @@ watertemp = wread_temp()
 
 print "Time: {}, Light: {}, Air Temp: {:.6}C, Air Press: {:.6}, Water Temp: {}C".format(ts, light, airtemp, airpress, watertemp)
 
-write_file('light.txt', light, ts)
-write_file('airpress.txt', airpress, ts)
-write_file('temp.txt', "{},{}".format(airtemp, watertemp), ts)
+r = requests.get('https://serioustime.io/api/SQtbKABnsD9r2Lu6F/uz0k9/now/{}'.format(light));
+r = requests.get('https://serioustime.io/api/67zYukQYFngjb3QTk/cmcxr/now/{}'.format(watertemp));
+r = requests.get('https://serioustime.io/api/CwmLesuG3XdHAQMep/89f6r/now/{}'.format(airtemp));
+
+#write_file('light.txt', light, ts)
+#write_file('airpress.txt', airpress, ts)
+#write_file('temp.txt', "{},{}".format(airtemp, watertemp), ts)
 
 camera = PiCamera()
 camera.rotation = 180
