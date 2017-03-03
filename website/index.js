@@ -1,9 +1,17 @@
 $(document).ready(function(){
   $('.drawChart').click(drawCharts);
+  drawCharts();
+
 });
 
 function drawCharts(e) {
-  var number = e.target.value;
+  var number;
+  if (e) {
+    number = e.target.value;
+  } else {
+    number = 288;
+  }
+
   $.getJSON('https://serioustime.io/api/SQtbKABnsD9r2Lu6F/'+number, function(data) {
     var dataarray = [];
     for(var i = 0;i < data.length;i++){
@@ -19,7 +27,12 @@ function drawCharts(e) {
     };
     var options = {
       showLabels: false,
-      showPoint: false
+      showPoint: false,
+      showGrid: false,
+      high: 60000,
+      low: 30000,
+      scaleMinSpace: 2000
+
     };
 
     var chart = new Chartist.Line('#light', data, options);
@@ -47,13 +60,15 @@ function drawCharts(e) {
 
     var data = {
       series: [
-        waterarray,
-        airarray
+        airarray,
+        waterarray
       ]
     };
     var options = {
       showLabels: false,
-      showPoint: false
+      showPoint: false,
+      showGrid: false,
+      onlyInteger: true,
     };
 
     var chart = new Chartist.Line('#temp', data, options);
